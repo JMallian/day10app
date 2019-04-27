@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum BookAPIError: Error {
+    case invalidJSONData
+}
+
 struct BookAPI {
     private static let baseURLString = "https://www.googleapis.com/books/v1/volumes"
     
@@ -27,5 +31,14 @@ struct BookAPI {
         
         components.queryItems = queryItems
         return components.url!
+    }
+    
+//    private static func books(fromJSON data: Data) -> BooksResult {
+//
+//
+//    }
+    
+    private static func book(fromJSON json: [String: Any]) -> Book? {
+        return nil
     }
 }
