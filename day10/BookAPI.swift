@@ -57,11 +57,12 @@ struct BookAPI {
         guard let volumeInfo = json["volumeInfo"] as? [String: Any],
             let title = volumeInfo["title"] as? String,
             let authors = volumeInfo["authors"] as? [String],
-            let publishedDate = json["publishedDate"] as? String,
-            let description = json["description"] as? String,
-            let imageLinks = json["imageLinks"] as? [String: String],
+            let publishedDate = volumeInfo["publishedDate"] as? String,
+            let description = volumeInfo["description"] as? String,
+            let imageLinks = volumeInfo["imageLinks"] as? [String: String],
             let imageLink = imageLinks["thumbnail"],
-            let selfLink = json["selfLink"] as? String else {
+            let selfLink = json["selfLink"] as? String
+            else {
                 return nil
         }
         return Book(title: title, authors: authors, publishedDate: publishedDate, description: description, imageLink: imageLink, selfLink: selfLink)

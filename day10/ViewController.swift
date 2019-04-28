@@ -24,6 +24,7 @@ class ViewController: UIViewController {
             switch apiResult {
             case let .success(books):
                 self.data = books
+                print("success! have \(books.count) books")
             case let .failure(error):
                 print("error in ViewController.viewDidLoad: \(error)")
             }
