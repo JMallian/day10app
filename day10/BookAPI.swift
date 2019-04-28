@@ -10,6 +10,7 @@ import Foundation
 
 enum BookAPIError: Error {
     case invalidJSONData
+    case unknownError 
 }
 
 struct BookAPI {

@@ -31,7 +31,11 @@ class BookStore {
     
     private func processBookRequest(data: Data?, error: Error?) -> APIResult {
         guard let jsonData = data else {
-            return .failure(error!) //TODO: deal with !
+            if let error = error {
+                return .failure(error)
+            } else {
+                return .failure(BookAPIError.unknownError)
+            }
         }
         return BookAPI.books(fromJSON: jsonData)
     }
