@@ -33,12 +33,36 @@ struct BookAPI {
         return components.url!
     }
     
-//    private static func books(fromJSON data: Data) -> BooksResult {
-//
-//
-//    }
+    static func books(fromJSON data: Data) -> APIResult {
+        do {
+            let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
+            guard let jsonDictionary = jsonObject as? [AnyHashable: Any], let items = jsonDictionary["items"] as? [[String: Any]] else {
+                return .failure(BookAPIError.invalidJSONData)
+            }
+            var books = [Book]()
+            for item in items {
+                if let book = book(fromJSON: item) {
+                    books.append(book)
+                }
+            }
+            //TODO: make sure books is not empty 
+            return .success(books)
+        } catch {
+            return .failure(error)
+        }
+    }
     
     private static func book(fromJSON json: [String: Any]) -> Book? {
-        return nil
+        guard let volumeInfo = json["volumeInfo"] as? [String: Any],
+            let title = volumeInfo["title"] as? String,
+            let authors = volumeInfo["authors"] as? [String],
+            let publishedDate = json["publishedDate"] as? String,
+            let description = json["description"] as? String,
+            let imageLinks = json["imageLinks"] as? [String: String],
+            let imageLink = imageLinks["thumbnail"],
+            let selfLink = json["selfLink"] as? String else {
+                return nil
+        }
+        return Book(title: title, authors: authors, publishedDate: publishedDate, description: description, imageLink: imageLink, selfLink: selfLink)
     }
 }

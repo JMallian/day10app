@@ -14,5 +14,25 @@ enum BooksResult: Error {
 }
 
 class BookStore {
+    private let session: URLSession = {
+        let config = URLSessionConfiguration.default
+        return URLSession(configuration: config)
+    }()
     
+    func fetchBooks(about searchTerm: String, completion: @escaping (APIResult) -> Void) {
+        let url = BookAPI.googleURL(search: searchTerm)
+        let request = URLRequest(url: url)
+        let task = session.dataTask(with: request) { (data, response, error) in
+            let result = self.processBookRequest(data: data, error: error)
+            completion(result)
+        }
+        task.resume()
+    }
+    
+    private func processBookRequest(data: Data?, error: Error?) -> APIResult {
+        guard let jsonData = data else {
+            return .failure(error!) //TODO: deal with !
+        }
+        return BookAPI.books(fromJSON: jsonData)
+    }
 }

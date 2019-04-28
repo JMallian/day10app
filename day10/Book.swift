@@ -11,12 +11,12 @@ import Foundation
 class Book {
     let title: String
     let authors: [String]
-    let publishedDate: Date
+    let publishedDate: String //TODO: make Date
     let description: String
     let imageLink: String
     let selfLink: String
     
-    init(title: String, authors: [String], publishedDate: Date, description: String, imageLink: String, selfLink: String) {
+    init(title: String, authors: [String], publishedDate: String, description: String, imageLink: String, selfLink: String) {
         self.title = title
         self.authors = authors
         self.publishedDate = publishedDate
