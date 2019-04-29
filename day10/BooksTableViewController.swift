@@ -20,24 +20,39 @@ class BooksTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        fetchBooksForTable()
+    }
+    
+    private func fetchBooksForTable() {
         bookStore.fetchBooks(about: "democracy") { (apiResult) in
             switch apiResult {
             case let .success(books):
                 self.data = books
-                print("success! have \(books.count) books")
-                if let books = self.data {
-                    for book in books {
-                        print(book.title)
-                        print(book.description)
-                        print("")
-                    }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
                 }
             case let .failure(error):
                 print("error in ViewController.viewDidLoad: \(error)")
             }
         }
-        let url = BookAPI.googleURL(search: "pizza")
-        print(url)
+    }
+    
+    //MARK: tableView functions
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath)
+        cell.textLabel?.text = data?[indexPath.row].title
+        var authors = ""
+        if let authorsArr = data?[indexPath.row].authors {
+            authors = authorsArr.joined(separator: ", ")
+        }
+        cell.detailTextLabel?.text = authors
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data?.count ?? 0
     }
 }
 
