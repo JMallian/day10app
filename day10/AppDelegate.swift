@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let bookStore = BookStore()
-        let vc = window?.rootViewController as? ViewController
+        let rootVC = window?.rootViewController as? UINavigationController
+        let vc = rootVC?.topViewController as? BooksTableViewController
         vc?.bookStore = bookStore 
         return true
     }

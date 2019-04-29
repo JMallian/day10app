@@ -13,7 +13,7 @@ enum APIResult {
     case failure(Error)
 }
 
-class ViewController: UIViewController {
+class BooksTableViewController: UITableViewController {
     var data: [Book]?
     var bookStore: BookStore!
     
@@ -25,6 +25,13 @@ class ViewController: UIViewController {
             case let .success(books):
                 self.data = books
                 print("success! have \(books.count) books")
+                if let books = self.data {
+                    for book in books {
+                        print(book.title)
+                        print(book.description)
+                        print("")
+                    }
+                }
             case let .failure(error):
                 print("error in ViewController.viewDidLoad: \(error)")
             }
