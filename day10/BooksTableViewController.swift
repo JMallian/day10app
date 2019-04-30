@@ -54,5 +54,14 @@ class BooksTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data?.count ?? 0
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let book = data?[indexPath.row] else {
+            return
+        }
+        let vc = storyboard?.instantiateViewController(withIdentifier: "BookInfoViewController") as! BookInfoViewController
+        vc.book = book 
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 

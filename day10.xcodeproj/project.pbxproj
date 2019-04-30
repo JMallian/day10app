@@ -16,6 +16,7 @@
 		C597905F2272848300F35712 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C597905D2272848300F35712 /* LaunchScreen.storyboard */; };
 		C5979067227285A300F35712 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5979066227285A300F35712 /* API.swift */; };
 		C5979069227286ED00F35712 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5979068227286ED00F35712 /* Book.swift */; };
+		C5CDC2C42277C6810014E321 /* BookInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CDC2C32277C6810014E321 /* BookInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		C59790602272848300F35712 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5979066227285A300F35712 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		C5979068227286ED00F35712 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		C5CDC2C32277C6810014E321 /* BookInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				C59790542272848100F35712 /* AppDelegate.swift */,
 				C59790562272848100F35712 /* BooksTableViewController.swift */,
+				C5CDC2C32277C6810014E321 /* BookInfoViewController.swift */,
 				C59790582272848100F35712 /* Main.storyboard */,
 				C597905B2272848300F35712 /* Assets.xcassets */,
 				C597905D2272848300F35712 /* LaunchScreen.storyboard */,
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5CDC2C42277C6810014E321 /* BookInfoViewController.swift in Sources */,
 				C53EB7C12273EE0000D23833 /* BookAPI.swift in Sources */,
 				C5979069227286ED00F35712 /* Book.swift in Sources */,
 				C51550262274EDA500F22C0F /* BookStore.swift in Sources */,
